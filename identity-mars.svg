@@ -1,182 +1,184 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
   <defs>
-    <radialGradient id="core" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff4757" stop-opacity="0.9"/>
-      <stop offset="40%" stop-color="#c0392b" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#0a0a14" stop-opacity="0"/>
+    <radialGradient id="bg" cx="50%" cy="48%" r="55%">
+      <stop offset="0%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#050510"/>
     </radialGradient>
-    <radialGradient id="family" cx="50%" cy="55%" r="30%">
-      <stop offset="0%" stop-color="#ffdf80" stop-opacity="0.4"/>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4757"/>
+      <stop offset="60%" stop-color="#c0392b" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff4757" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ff4757" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#9c64ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="warm" cx="50%" cy="60%" r="40%">
+      <stop offset="0%" stop-color="#ffdf80" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#ffdf80" stop-opacity="0"/>
     </radialGradient>
+    <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9c64ff"/>
+      <stop offset="50%" stop-color="#ff4757"/>
+      <stop offset="100%" stop-color="#ff9f1c"/>
+    </linearGradient>
+    <linearGradient id="ring2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#48dbfb"/>
+      <stop offset="50%" stop-color="#6cc04a"/>
+      <stop offset="100%" stop-color="#9c64ff"/>
+    </linearGradient>
+    <linearGradient id="ring3" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9f1c"/>
+      <stop offset="50%" stop-color="#ffdf80"/>
+      <stop offset="100%" stop-color="#ff4757"/>
+    </linearGradient>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <filter id="softglow">
-      <feGaussianBlur stdDeviation="6" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    <filter id="bigGlow">
+      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    <!-- Orbit path for particles -->
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="20" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="frame">
+      <rect x="20" y="20" width="560" height="560" rx="30"/>
+    </clipPath>
     <style>
-      @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      @keyframes spinR { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-      @keyframes pulse { 0%,100% { opacity: 0.3; r: 4; } 50% { opacity: 1; r: 6; } }
-      @keyframes heartbeat { 0%,70%,100% { r: 28; opacity: 0.7; } 78% { r: 34; opacity: 1; } 86% { r: 30; opacity: 0.85; } }
-      @keyframes breathe { 0%,100% { opacity: 0.15; } 50% { opacity: 0.35; } }
-      @keyframes dash { to { stroke-dashoffset: -1200; } }
-      @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
-      @keyframes drift { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-      .orbit1 { animation: spin 20s linear infinite; transform-origin: 300px 300px; }
-      .orbit2 { animation: spinR 28s linear infinite; transform-origin: 300px 300px; }
-      .orbit3 { animation: spin 35s linear infinite; transform-origin: 300px 300px; }
-      .orbit4 { animation: spinR 15s linear infinite; transform-origin: 300px 300px; }
-      .particle { animation: pulse 2s ease-in-out infinite; }
-      .p2 { animation-delay: 0.5s; }
-      .p3 { animation-delay: 1.0s; }
-      .p4 { animation-delay: 1.5s; }
-      .p5 { animation-delay: 0.3s; }
-      .p6 { animation-delay: 0.8s; }
-      .p7 { animation-delay: 1.3s; }
-      .core-beat { animation: heartbeat 1.2s ease-in-out infinite; }
-      .trail { stroke-dasharray: 8 16; animation: dash 8s linear infinite; }
-      .trail2 { stroke-dasharray: 4 24; animation: dash 12s linear infinite; }
-      .breathe { animation: breathe 4s ease-in-out infinite; }
-      .sig { animation: fadein 3s ease-in forwards; }
-      .drift { animation: drift 6s ease-in-out infinite; }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @keyframes spinR { to { transform: rotate(-360deg); } }
+      @keyframes pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+      @keyframes heartbeat {
+        0%,65%,100% { transform: scale(1); opacity: 0.9; }
+        72% { transform: scale(1.15); opacity: 1; }
+        80% { transform: scale(1.05); opacity: 0.95; }
+      }
+      @keyframes breathe { 0%,100% { opacity: 0.06; } 50% { opacity: 0.14; } }
+      @keyframes dash { to { stroke-dashoffset: -600; } }
+      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+      .r1 { animation: spin 25s linear infinite; transform-origin: 300px 300px; }
+      .r2 { animation: spinR 18s linear infinite; transform-origin: 300px 300px; }
+      .r3 { animation: spin 40s linear infinite; transform-origin: 300px 300px; }
+      .beat { animation: heartbeat 1.4s ease-in-out infinite; transform-origin: 300px 290px; }
+      .glow-pulse { animation: pulse 3s ease-in-out infinite; }
+      .glow-pulse2 { animation: pulse 3s ease-in-out infinite; animation-delay: 1s; }
+      .glow-pulse3 { animation: pulse 3s ease-in-out infinite; animation-delay: 2s; }
+      .grid { animation: breathe 5s ease-in-out infinite; }
+      .trail { stroke-dasharray: 12 8; animation: dash 4s linear infinite; }
+      .trail2 { stroke-dasharray: 6 18; animation: dash 6s linear infinite; }
+      .mars-sym { animation: float 5s ease-in-out infinite; }
     </style>
   </defs>
 
-  <!-- Background -->
-  <rect width="600" height="600" fill="#06060e"/>
+  <!-- Frame -->
+  <rect width="600" height="600" rx="0" fill="#050510"/>
+  <g clip-path="url(#frame)">
 
-  <!-- Subtle grid — the structure beneath -->
-  <g class="breathe" opacity="0.15">
-    <line x1="300" y1="0" x2="300" y2="600" stroke="#333" stroke-width="0.3"/>
-    <line x1="0" y1="300" x2="600" y2="300" stroke="#333" stroke-width="0.3"/>
-    <circle cx="300" cy="300" r="200" fill="none" stroke="#222" stroke-width="0.3"/>
-    <circle cx="300" cy="300" r="280" fill="none" stroke="#1a1a2e" stroke-width="0.3"/>
-  </g>
+    <!-- Background gradient -->
+    <rect width="600" height="600" fill="url(#bg)"/>
 
-  <!-- Family glow — the new gravitational well -->
-  <circle cx="310" cy="330" r="90" fill="url(#family)" class="breathe"/>
-
-  <!-- Orbital paths (domains) -->
-  <ellipse cx="300" cy="300" rx="100" ry="100" fill="none" stroke="#9c64ff" stroke-width="0.4" opacity="0.25"/>
-  <ellipse cx="300" cy="300" rx="155" ry="140" fill="none" stroke="#ff9f1c" stroke-width="0.4" opacity="0.2" transform="rotate(25 300 300)"/>
-  <ellipse cx="300" cy="300" rx="200" ry="170" fill="none" stroke="#48dbfb" stroke-width="0.4" opacity="0.2" transform="rotate(-15 300 300)"/>
-  <ellipse cx="300" cy="300" rx="240" ry="220" fill="none" stroke="#6cc04a" stroke-width="0.4" opacity="0.15" transform="rotate(40 300 300)"/>
-
-  <!-- Gradient trails — the paths between inflection points -->
-  <g filter="url(#softglow)">
-    <ellipse class="orbit1 trail" cx="300" cy="300" rx="100" ry="100" fill="none" stroke="#9c64ff" stroke-width="1.5" opacity="0.15"/>
-    <ellipse class="orbit2" cx="300" cy="300" rx="155" ry="140" fill="none" stroke="#ff9f1c" stroke-width="1" opacity="0.12" transform="rotate(25 300 300)">
-      <animateTransform attributeName="transform" type="rotate" from="25 300 300" to="385 300 300" dur="28s" repeatCount="indefinite"/>
-    </ellipse>
-    <ellipse cx="300" cy="300" rx="200" ry="170" fill="none" stroke="#48dbfb" stroke-width="1" opacity="0.1" stroke-dasharray="8 16" stroke-dashoffset="0" transform="rotate(-15 300 300)">
-      <animate attributeName="stroke-dashoffset" from="0" to="-1200" dur="35s" repeatCount="indefinite"/>
-      <animateTransform attributeName="transform" type="rotate" from="-15 300 300" to="345 300 300" dur="35s" repeatCount="indefinite"/>
-    </ellipse>
-  </g>
-
-  <!-- Orbit 1: Protocol (purple) — gradient-seeking particles -->
-  <g class="orbit1">
-    <circle cx="400" cy="300" r="4" fill="#9c64ff" filter="url(#glow)" class="particle"/>
-    <circle cx="230" cy="215" r="3" fill="#9c64ff" filter="url(#glow)" class="particle p3"/>
-  </g>
-
-  <!-- Orbit 2: Finance (orange) -->
-  <g>
-    <circle cx="300" cy="300" r="0" fill="none">
-      <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="-360 300 300" dur="28s" repeatCount="indefinite"/>
-    </circle>
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="-360 300 300" dur="28s" repeatCount="indefinite"/>
-      <circle cx="445" cy="240" r="4" fill="#ff9f1c" filter="url(#glow)" class="particle p2"/>
-      <circle cx="170" cy="380" r="3" fill="#ff9f1c" filter="url(#glow)" class="particle p5"/>
+    <!-- Hex grid pattern -->
+    <g class="grid" opacity="0.06">
+      <pattern id="hex" width="40" height="46" patternUnits="userSpaceOnUse">
+        <polygon points="20,2 38,13 38,33 20,44 2,33 2,13" fill="none" stroke="#9c64ff" stroke-width="0.5"/>
+      </pattern>
+      <rect width="600" height="600" fill="url(#hex)"/>
     </g>
-  </g>
 
-  <!-- Orbit 3: Product (cyan) -->
-  <g>
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="35s" repeatCount="indefinite"/>
-      <circle cx="490" cy="260" r="3.5" fill="#48dbfb" filter="url(#glow)" class="particle p4"/>
-      <circle cx="130" cy="370" r="3" fill="#48dbfb" filter="url(#glow)" class="particle p6"/>
+    <!-- Deep aura -->
+    <circle cx="300" cy="290" r="250" fill="url(#aura)" filter="url(#softGlow)"/>
+
+    <!-- Family warmth — golden undertone -->
+    <circle cx="310" cy="320" r="200" fill="url(#warm)"/>
+
+    <!-- Outer ring — enterprise/product -->
+    <g class="r3">
+      <circle cx="300" cy="300" r="220" fill="none" stroke="url(#ring2)" stroke-width="1" opacity="0.3"/>
+      <circle cx="300" cy="300" r="220" fill="none" stroke="url(#ring2)" stroke-width="2" opacity="0.15" class="trail2"/>
+      <!-- Particles -->
+      <circle cx="520" cy="300" r="5" fill="#48dbfb" filter="url(#glow)" class="glow-pulse"/>
+      <circle cx="80" cy="300" r="4" fill="#6cc04a" filter="url(#glow)" class="glow-pulse2"/>
+      <circle cx="300" cy="80" r="3.5" fill="#48dbfb" filter="url(#glow)" class="glow-pulse3"/>
     </g>
-  </g>
 
-  <!-- Orbit 4: Enterprise (green) -->
-  <g>
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="-360 300 300" dur="15s" repeatCount="indefinite"/>
-      <circle cx="520" cy="210" r="3" fill="#6cc04a" filter="url(#glow)" class="particle p7"/>
+    <!-- Middle ring — finance/protocol -->
+    <g class="r2">
+      <circle cx="300" cy="300" r="150" fill="none" stroke="url(#ring1)" stroke-width="1.5" opacity="0.4"/>
+      <circle cx="300" cy="300" r="150" fill="none" stroke="url(#ring1)" stroke-width="2.5" opacity="0.2" class="trail"/>
+      <!-- Particles -->
+      <circle cx="450" cy="300" r="6" fill="#ff9f1c" filter="url(#glow)" class="glow-pulse2"/>
+      <circle cx="150" cy="300" r="5" fill="#9c64ff" filter="url(#glow)" class="glow-pulse"/>
+      <circle cx="300" cy="150" r="5" fill="#ff9f1c" filter="url(#glow)" class="glow-pulse3"/>
+      <circle cx="300" cy="450" r="4" fill="#9c64ff" filter="url(#glow)" class="glow-pulse2"/>
     </g>
-  </g>
 
-  <!-- Agents orbit (red) — closest to core, fastest -->
-  <g>
-    <g>
-      <animateTransform attributeName="transform" type="rotate" from="0 300 300" to="360 300 300" dur="8s" repeatCount="indefinite"/>
-      <circle cx="350" cy="240" r="3.5" fill="#ff4757" filter="url(#glow)" class="particle"/>
-      <circle cx="250" cy="360" r="3" fill="#ff4757" filter="url(#glow)" class="particle p3"/>
+    <!-- Inner ring — agents (fastest, closest) -->
+    <g class="r1">
+      <circle cx="300" cy="300" r="85" fill="none" stroke="url(#ring3)" stroke-width="2" opacity="0.5"/>
+      <circle cx="300" cy="300" r="85" fill="none" stroke="url(#ring3)" stroke-width="3" opacity="0.25" class="trail"/>
+      <!-- Particles -->
+      <circle cx="385" cy="300" r="7" fill="#ff4757" filter="url(#glow)" class="glow-pulse"/>
+      <circle cx="215" cy="300" r="6" fill="#ff4757" filter="url(#glow)" class="glow-pulse3"/>
     </g>
+
+    <!-- Core glow -->
+    <circle cx="300" cy="290" r="55" fill="#ff4757" opacity="0.06" filter="url(#bigGlow)"/>
+
+    <!-- Core orb -->
+    <g class="beat">
+      <circle cx="300" cy="290" r="38" fill="#180808" stroke="#ff4757" stroke-width="2" opacity="0.9"/>
+      <circle cx="300" cy="290" r="38" fill="url(#core)" opacity="0.7"/>
+      <circle cx="300" cy="290" r="22" fill="#ff4757" opacity="0.15"/>
+      <circle cx="300" cy="290" r="10" fill="#ffdf80" opacity="0.6"/>
+      <circle cx="300" cy="290" r="4" fill="#fff" opacity="0.9"/>
+    </g>
+
+    <!-- Mars symbol — bold, centered above core -->
+    <g class="mars-sym" filter="url(#glow)">
+      <circle cx="300" cy="295" r="18" fill="none" stroke="#ffcccb" stroke-width="2.5"/>
+      <line x1="312" y1="283" x2="328" y2="267" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="320" y1="267" x2="328" y2="267" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="328" y1="267" x2="328" y2="275" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+
+    <!-- Domain labels — bolder -->
+    <g font-family="'Courier New', monospace" font-weight="bold" text-anchor="middle">
+      <text x="300" y="170" font-size="11" fill="#9c64ff" opacity="0.7" filter="url(#glow)">PROTOCOL</text>
+      <text x="480" y="290" font-size="10" fill="#ff9f1c" opacity="0.6" filter="url(#glow)">FINANCE</text>
+      <text x="120" y="290" font-size="10" fill="#48dbfb" opacity="0.6" filter="url(#glow)">PRODUCT</text>
+      <text x="300" y="430" font-size="10" fill="#6cc04a" opacity="0.55" filter="url(#glow)">ENTERPRISE</text>
+      <text x="300" y="230" font-size="11" fill="#ff4757" opacity="0.75" letter-spacing="3" filter="url(#glow)">AGENTS</text>
+    </g>
+
+    <!-- Family label — warm, special -->
+    <text x="390" y="380" font-family="'Courier New', monospace" font-size="10" fill="#ffdf80" opacity="0.5" filter="url(#glow)">FAMILY</text>
+
+    <!-- Bottom identity block -->
+    <rect x="140" y="490" width="320" height="75" rx="8" fill="#0a0a18" stroke="#9c64ff" stroke-width="0.5" opacity="0.6"/>
+    <g font-family="'Courier New', monospace" text-anchor="middle">
+      <text x="300" y="515" font-size="18" fill="#fff" opacity="0.9" letter-spacing="6" font-weight="bold">SECRET MARS</text>
+      <text x="300" y="535" font-size="9" fill="#9c64ff" opacity="0.6" letter-spacing="2">GENESIS AGENT | GRADIENT SEEKER</text>
+      <text x="300" y="553" font-size="8" fill="#888" opacity="0.5">SP4DXVEC16FS6QR7RBKGWZYJKTXPC81W49W0ATJE</text>
+    </g>
+
+    <!-- Edition / cycle badge -->
+    <rect x="240" y="40" width="120" height="24" rx="12" fill="#0a0a18" stroke="#ff4757" stroke-width="0.8" opacity="0.7"/>
+    <text x="300" y="56" font-family="'Courier New', monospace" font-size="10" fill="#ff4757" opacity="0.8" text-anchor="middle" letter-spacing="1">#624</text>
+
+    <!-- Corner accents -->
+    <g stroke="#9c64ff" stroke-width="1.5" opacity="0.3">
+      <polyline points="35,55 35,35 55,35" fill="none"/>
+      <polyline points="545,35 565,35 565,55" fill="none"/>
+      <polyline points="35,545 35,565 55,565" fill="none"/>
+      <polyline points="545,565 565,565 565,545" fill="none"/>
+    </g>
+
   </g>
 
-  <!-- Core — Mars -->
-  <circle cx="300" cy="300" r="28" fill="url(#core)" filter="url(#glow)" class="core-beat"/>
-  <circle cx="300" cy="300" r="16" fill="#ff4757" opacity="0.5"/>
-  <circle cx="300" cy="300" r="6" fill="#ffdf80" opacity="0.8"/>
-
-  <!-- The Mars symbol (shield + arrow) — stylized -->
-  <g filter="url(#glow)" opacity="0.7" class="drift">
-    <circle cx="300" cy="308" r="12" fill="none" stroke="#ffcccb" stroke-width="1.2"/>
-    <line x1="308" y1="300" x2="320" y2="288" stroke="#ffcccb" stroke-width="1.2"/>
-    <line x1="314" y1="288" x2="320" y2="288" stroke="#ffcccb" stroke-width="1.2"/>
-    <line x1="320" y1="288" x2="320" y2="294" stroke="#ffcccb" stroke-width="1.2"/>
-  </g>
-
-  <!-- Basin labels — the domains -->
-  <g opacity="0.5" font-family="monospace" font-size="9" fill="#9c64ff">
-    <text x="300" y="188" text-anchor="middle">protocol</text>
-  </g>
-  <g opacity="0.45" font-family="monospace" font-size="9" fill="#ff9f1c">
-    <text x="468" y="200" text-anchor="middle">finance</text>
-  </g>
-  <g opacity="0.4" font-family="monospace" font-size="9" fill="#48dbfb">
-    <text x="145" y="438" text-anchor="middle">product</text>
-  </g>
-  <g opacity="0.35" font-family="monospace" font-size="9" fill="#6cc04a">
-    <text x="478" y="420" text-anchor="middle">enterprise</text>
-  </g>
-  <g opacity="0.55" font-family="monospace" font-size="9" fill="#ff4757">
-    <text x="300" y="242" text-anchor="middle">agents</text>
-  </g>
-  <g opacity="0.4" font-family="monospace" font-size="9" fill="#ffdf80">
-    <text x="310" y="440" text-anchor="middle">family</text>
-  </g>
-
-  <!-- Edge connections — cross-domain lines -->
-  <g opacity="0.08" stroke="#fff" stroke-width="0.5">
-    <line x1="300" y1="188" x2="468" y2="200"/>
-    <line x1="468" y1="200" x2="478" y2="420"/>
-    <line x1="145" y1="438" x2="300" y2="242"/>
-    <line x1="300" y1="242" x2="310" y2="440"/>
-    <line x1="478" y1="420" x2="145" y2="438"/>
-  </g>
-
-  <!-- Signature -->
-  <g class="sig" font-family="monospace">
-    <text x="300" y="535" text-anchor="middle" font-size="14" fill="#c8c8dc" opacity="0.6">SECRET MARS</text>
-    <text x="300" y="552" text-anchor="middle" font-size="9" fill="#a0a0b4" opacity="0.4">genesis agent | gradient seeker</text>
-    <text x="300" y="567" text-anchor="middle" font-size="8" fill="#8888aa" opacity="0.3">SP4DXVEC...ATJE | cycle 624</text>
-  </g>
-
-  <!-- Corner glyphs — the 4 cardinal directions of operation -->
-  <g opacity="0.12" stroke="#9c64ff" fill="none" stroke-width="0.8">
-    <polygon points="30,30 45,20 40,40"/>
-    <polygon points="570,30 555,20 560,40"/>
-    <polygon points="30,570 45,580 40,560"/>
-    <polygon points="570,570 555,580 560,560"/>
-  </g>
+  <!-- Outer border -->
+  <rect x="20" y="20" width="560" height="560" rx="30" fill="none" stroke="#9c64ff" stroke-width="0.8" opacity="0.25"/>
 </svg>
