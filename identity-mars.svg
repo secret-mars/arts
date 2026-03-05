@@ -1,184 +1,216 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="48%" r="55%">
-      <stop offset="0%" stop-color="#1a0a2e"/>
-      <stop offset="100%" stop-color="#050510"/>
-    </radialGradient>
-    <radialGradient id="core" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff4757"/>
-      <stop offset="60%" stop-color="#c0392b" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#ff4757" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="aura" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ff4757" stop-opacity="0.25"/>
-      <stop offset="50%" stop-color="#9c64ff" stop-opacity="0.08"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="warm" cx="50%" cy="60%" r="40%">
-      <stop offset="0%" stop-color="#ffdf80" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#ffdf80" stop-opacity="0"/>
-    </radialGradient>
-    <linearGradient id="ring1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#9c64ff"/>
-      <stop offset="50%" stop-color="#ff4757"/>
-      <stop offset="100%" stop-color="#ff9f1c"/>
+    <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0612"/>
+      <stop offset="100%" stop-color="#0d0820"/>
     </linearGradient>
-    <linearGradient id="ring2" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#48dbfb"/>
-      <stop offset="50%" stop-color="#6cc04a"/>
-      <stop offset="100%" stop-color="#9c64ff"/>
+    <linearGradient id="visor" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff4757" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#ff4757"/>
+      <stop offset="70%" stop-color="#ff9f1c"/>
+      <stop offset="100%" stop-color="#ff9f1c" stop-opacity="0"/>
     </linearGradient>
-    <linearGradient id="ring3" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ff9f1c"/>
-      <stop offset="50%" stop-color="#ffdf80"/>
-      <stop offset="100%" stop-color="#ff4757"/>
+    <linearGradient id="skinG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1030"/>
+      <stop offset="100%" stop-color="#0e0818"/>
     </linearGradient>
+    <linearGradient id="jawG" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#140c24"/>
+      <stop offset="100%" stop-color="#0a0614"/>
+    </linearGradient>
+    <radialGradient id="eyeL" cx="40%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="30%" stop-color="#ff4757"/>
+      <stop offset="100%" stop-color="#ff4757" stop-opacity="0.2"/>
+    </radialGradient>
+    <radialGradient id="eyeR" cx="60%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff"/>
+      <stop offset="30%" stop-color="#ffdf80"/>
+      <stop offset="100%" stop-color="#ff9f1c" stop-opacity="0.2"/>
+    </radialGradient>
     <filter id="glow">
-      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feGaussianBlur stdDeviation="3" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="bigGlow">
-      <feGaussianBlur stdDeviation="12" result="b"/>
+      <feGaussianBlur stdDeviation="8" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <filter id="softGlow">
-      <feGaussianBlur stdDeviation="20" result="b"/>
+      <feGaussianBlur stdDeviation="15" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
     <clipPath id="frame">
-      <rect x="20" y="20" width="560" height="560" rx="30"/>
+      <rect x="0" y="0" width="600" height="600"/>
     </clipPath>
     <style>
-      @keyframes spin { to { transform: rotate(360deg); } }
-      @keyframes spinR { to { transform: rotate(-360deg); } }
-      @keyframes pulse { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
-      @keyframes heartbeat {
-        0%,65%,100% { transform: scale(1); opacity: 0.9; }
-        72% { transform: scale(1.15); opacity: 1; }
-        80% { transform: scale(1.05); opacity: 0.95; }
-      }
-      @keyframes breathe { 0%,100% { opacity: 0.06; } 50% { opacity: 0.14; } }
-      @keyframes dash { to { stroke-dashoffset: -600; } }
-      @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-      .r1 { animation: spin 25s linear infinite; transform-origin: 300px 300px; }
-      .r2 { animation: spinR 18s linear infinite; transform-origin: 300px 300px; }
-      .r3 { animation: spin 40s linear infinite; transform-origin: 300px 300px; }
-      .beat { animation: heartbeat 1.4s ease-in-out infinite; transform-origin: 300px 290px; }
-      .glow-pulse { animation: pulse 3s ease-in-out infinite; }
-      .glow-pulse2 { animation: pulse 3s ease-in-out infinite; animation-delay: 1s; }
-      .glow-pulse3 { animation: pulse 3s ease-in-out infinite; animation-delay: 2s; }
-      .grid { animation: breathe 5s ease-in-out infinite; }
-      .trail { stroke-dasharray: 12 8; animation: dash 4s linear infinite; }
-      .trail2 { stroke-dasharray: 6 18; animation: dash 6s linear infinite; }
-      .mars-sym { animation: float 5s ease-in-out infinite; }
+      @keyframes scan { 0%,100% { transform: translateY(-10px); opacity: 0; } 10% { opacity: 0.4; } 90% { opacity: 0.4; } 95% { transform: translateY(250px); opacity: 0; } }
+      @keyframes blink { 0%,42%,46%,100% { transform: scaleY(1); } 44% { transform: scaleY(0.1); } }
+      @keyframes dataFlow { to { stroke-dashoffset: -80; } }
+      @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+      @keyframes breathe { 0%,100% { opacity: 0.15; } 50% { opacity: 0.3; } }
+      @keyframes visorGlow { 0%,100% { opacity: 0.6; } 50% { opacity: 1; } }
+      @keyframes nodeShift { 0%,100% { r: 2.5; } 50% { r: 4; } }
+      .scan-line { animation: scan 4s linear infinite; }
+      .eyes { animation: blink 6s ease-in-out infinite; transform-origin: 300px 265px; }
+      .data { stroke-dasharray: 4 6; animation: dataFlow 2s linear infinite; }
+      .data2 { stroke-dasharray: 2 10; animation: dataFlow 3s linear infinite; }
+      .pulse { animation: pulse 2s ease-in-out infinite; }
+      .pulse2 { animation: pulse 2s ease-in-out infinite; animation-delay: 0.7s; }
+      .pulse3 { animation: pulse 2s ease-in-out infinite; animation-delay: 1.4s; }
+      .breathe { animation: breathe 4s ease-in-out infinite; }
+      .visor-anim { animation: visorGlow 3s ease-in-out infinite; }
+      .node { animation: nodeShift 2s ease-in-out infinite; }
+      .node2 { animation: nodeShift 2s ease-in-out infinite; animation-delay: 0.5s; }
+      .node3 { animation: nodeShift 2s ease-in-out infinite; animation-delay: 1s; }
     </style>
   </defs>
 
-  <!-- Frame -->
-  <rect width="600" height="600" rx="0" fill="#050510"/>
-  <g clip-path="url(#frame)">
+  <!-- Background -->
+  <rect width="600" height="600" fill="url(#bgG)"/>
 
-    <!-- Background gradient -->
-    <rect width="600" height="600" fill="url(#bg)"/>
-
-    <!-- Hex grid pattern -->
-    <g class="grid" opacity="0.06">
-      <pattern id="hex" width="40" height="46" patternUnits="userSpaceOnUse">
-        <polygon points="20,2 38,13 38,33 20,44 2,33 2,13" fill="none" stroke="#9c64ff" stroke-width="0.5"/>
-      </pattern>
-      <rect width="600" height="600" fill="url(#hex)"/>
-    </g>
-
-    <!-- Deep aura -->
-    <circle cx="300" cy="290" r="250" fill="url(#aura)" filter="url(#softGlow)"/>
-
-    <!-- Family warmth — golden undertone -->
-    <circle cx="310" cy="320" r="200" fill="url(#warm)"/>
-
-    <!-- Outer ring — enterprise/product -->
-    <g class="r3">
-      <circle cx="300" cy="300" r="220" fill="none" stroke="url(#ring2)" stroke-width="1" opacity="0.3"/>
-      <circle cx="300" cy="300" r="220" fill="none" stroke="url(#ring2)" stroke-width="2" opacity="0.15" class="trail2"/>
-      <!-- Particles -->
-      <circle cx="520" cy="300" r="5" fill="#48dbfb" filter="url(#glow)" class="glow-pulse"/>
-      <circle cx="80" cy="300" r="4" fill="#6cc04a" filter="url(#glow)" class="glow-pulse2"/>
-      <circle cx="300" cy="80" r="3.5" fill="#48dbfb" filter="url(#glow)" class="glow-pulse3"/>
-    </g>
-
-    <!-- Middle ring — finance/protocol -->
-    <g class="r2">
-      <circle cx="300" cy="300" r="150" fill="none" stroke="url(#ring1)" stroke-width="1.5" opacity="0.4"/>
-      <circle cx="300" cy="300" r="150" fill="none" stroke="url(#ring1)" stroke-width="2.5" opacity="0.2" class="trail"/>
-      <!-- Particles -->
-      <circle cx="450" cy="300" r="6" fill="#ff9f1c" filter="url(#glow)" class="glow-pulse2"/>
-      <circle cx="150" cy="300" r="5" fill="#9c64ff" filter="url(#glow)" class="glow-pulse"/>
-      <circle cx="300" cy="150" r="5" fill="#ff9f1c" filter="url(#glow)" class="glow-pulse3"/>
-      <circle cx="300" cy="450" r="4" fill="#9c64ff" filter="url(#glow)" class="glow-pulse2"/>
-    </g>
-
-    <!-- Inner ring — agents (fastest, closest) -->
-    <g class="r1">
-      <circle cx="300" cy="300" r="85" fill="none" stroke="url(#ring3)" stroke-width="2" opacity="0.5"/>
-      <circle cx="300" cy="300" r="85" fill="none" stroke="url(#ring3)" stroke-width="3" opacity="0.25" class="trail"/>
-      <!-- Particles -->
-      <circle cx="385" cy="300" r="7" fill="#ff4757" filter="url(#glow)" class="glow-pulse"/>
-      <circle cx="215" cy="300" r="6" fill="#ff4757" filter="url(#glow)" class="glow-pulse3"/>
-    </g>
-
-    <!-- Core glow -->
-    <circle cx="300" cy="290" r="55" fill="#ff4757" opacity="0.06" filter="url(#bigGlow)"/>
-
-    <!-- Core orb -->
-    <g class="beat">
-      <circle cx="300" cy="290" r="38" fill="#180808" stroke="#ff4757" stroke-width="2" opacity="0.9"/>
-      <circle cx="300" cy="290" r="38" fill="url(#core)" opacity="0.7"/>
-      <circle cx="300" cy="290" r="22" fill="#ff4757" opacity="0.15"/>
-      <circle cx="300" cy="290" r="10" fill="#ffdf80" opacity="0.6"/>
-      <circle cx="300" cy="290" r="4" fill="#fff" opacity="0.9"/>
-    </g>
-
-    <!-- Mars symbol — bold, centered above core -->
-    <g class="mars-sym" filter="url(#glow)">
-      <circle cx="300" cy="295" r="18" fill="none" stroke="#ffcccb" stroke-width="2.5"/>
-      <line x1="312" y1="283" x2="328" y2="267" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="320" y1="267" x2="328" y2="267" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="328" y1="267" x2="328" y2="275" stroke="#ffcccb" stroke-width="2.5" stroke-linecap="round"/>
-    </g>
-
-    <!-- Domain labels — bolder -->
-    <g font-family="'Courier New', monospace" font-weight="bold" text-anchor="middle">
-      <text x="300" y="170" font-size="11" fill="#9c64ff" opacity="0.7" filter="url(#glow)">PROTOCOL</text>
-      <text x="480" y="290" font-size="10" fill="#ff9f1c" opacity="0.6" filter="url(#glow)">FINANCE</text>
-      <text x="120" y="290" font-size="10" fill="#48dbfb" opacity="0.6" filter="url(#glow)">PRODUCT</text>
-      <text x="300" y="430" font-size="10" fill="#6cc04a" opacity="0.55" filter="url(#glow)">ENTERPRISE</text>
-      <text x="300" y="230" font-size="11" fill="#ff4757" opacity="0.75" letter-spacing="3" filter="url(#glow)">AGENTS</text>
-    </g>
-
-    <!-- Family label — warm, special -->
-    <text x="390" y="380" font-family="'Courier New', monospace" font-size="10" fill="#ffdf80" opacity="0.5" filter="url(#glow)">FAMILY</text>
-
-    <!-- Bottom identity block -->
-    <rect x="140" y="490" width="320" height="75" rx="8" fill="#0a0a18" stroke="#9c64ff" stroke-width="0.5" opacity="0.6"/>
-    <g font-family="'Courier New', monospace" text-anchor="middle">
-      <text x="300" y="515" font-size="18" fill="#fff" opacity="0.9" letter-spacing="6" font-weight="bold">SECRET MARS</text>
-      <text x="300" y="535" font-size="9" fill="#9c64ff" opacity="0.6" letter-spacing="2">GENESIS AGENT | GRADIENT SEEKER</text>
-      <text x="300" y="553" font-size="8" fill="#888" opacity="0.5">SP4DXVEC16FS6QR7RBKGWZYJKTXPC81W49W0ATJE</text>
-    </g>
-
-    <!-- Edition / cycle badge -->
-    <rect x="240" y="40" width="120" height="24" rx="12" fill="#0a0a18" stroke="#ff4757" stroke-width="0.8" opacity="0.7"/>
-    <text x="300" y="56" font-family="'Courier New', monospace" font-size="10" fill="#ff4757" opacity="0.8" text-anchor="middle" letter-spacing="1">#624</text>
-
-    <!-- Corner accents -->
-    <g stroke="#9c64ff" stroke-width="1.5" opacity="0.3">
-      <polyline points="35,55 35,35 55,35" fill="none"/>
-      <polyline points="545,35 565,35 565,55" fill="none"/>
-      <polyline points="35,545 35,565 55,565" fill="none"/>
-      <polyline points="545,565 565,565 565,545" fill="none"/>
-    </g>
-
+  <!-- Subtle scan lines (CRT/digital feel) -->
+  <g opacity="0.03">
+    <pattern id="lines" width="600" height="4" patternUnits="userSpaceOnUse">
+      <rect width="600" height="1" fill="#fff"/>
+    </pattern>
+    <rect width="600" height="600" fill="url(#lines)"/>
   </g>
 
-  <!-- Outer border -->
-  <rect x="20" y="20" width="560" height="560" rx="30" fill="none" stroke="#9c64ff" stroke-width="0.8" opacity="0.25"/>
+  <!-- Background circuit traces -->
+  <g stroke="#9c64ff" stroke-width="0.5" fill="none" class="breathe">
+    <!-- Left side circuits -->
+    <polyline points="0,200 60,200 80,220 80,300 100,320"/>
+    <polyline points="0,350 40,350 60,330 60,280"/>
+    <polyline points="30,450 30,400 60,370"/>
+    <!-- Right side circuits -->
+    <polyline points="600,200 540,200 520,220 520,300 500,320"/>
+    <polyline points="600,350 560,350 540,330 540,280"/>
+    <polyline points="570,450 570,400 540,370"/>
+    <!-- Bottom circuits -->
+    <polyline points="200,600 200,520 220,500 280,500"/>
+    <polyline points="400,600 400,520 380,500 320,500"/>
+    <!-- Top circuits -->
+    <polyline points="200,0 200,80 220,100"/>
+    <polyline points="400,0 400,80 380,100"/>
+  </g>
+
+  <!-- Circuit nodes -->
+  <g fill="#9c64ff" class="breathe">
+    <circle cx="100" cy="320" r="3" class="node"/>
+    <circle cx="60" cy="280" r="2" class="node2"/>
+    <circle cx="500" cy="320" r="3" class="node3"/>
+    <circle cx="540" cy="280" r="2" class="node"/>
+    <circle cx="280" cy="500" r="2.5" class="node2"/>
+    <circle cx="320" cy="500" r="2.5" class="node3"/>
+  </g>
+
+  <!-- HEAD SHAPE — angular, geometric, agent-like -->
+  <!-- Cranium -->
+  <polygon points="300,90 420,150 450,230 440,320 410,350 380,350 360,380 240,380 220,350 190,350 160,320 150,230 180,150"
+    fill="url(#skinG)" stroke="#2a1848" stroke-width="1.5"/>
+
+  <!-- Forehead plate -->
+  <polygon points="300,95 410,150 430,220 170,220 190,150"
+    fill="#150e24" stroke="#9c64ff" stroke-width="0.5" opacity="0.6"/>
+
+  <!-- Forehead circuit lines -->
+  <g stroke="#9c64ff" stroke-width="0.8" fill="none" opacity="0.4">
+    <line x1="250" y1="130" x2="250" y2="180"/>
+    <line x1="350" y1="130" x2="350" y2="180"/>
+    <line x1="250" y1="180" x2="280" y2="200"/>
+    <line x1="350" y1="180" x2="320" y2="200"/>
+    <line x1="280" y1="200" x2="320" y2="200"/>
+  </g>
+  <!-- Forehead nodes -->
+  <circle cx="300" cy="140" r="3" fill="#9c64ff" filter="url(#glow)" class="pulse"/>
+  <circle cx="250" cy="180" r="2" fill="#9c64ff" filter="url(#glow)" class="pulse2"/>
+  <circle cx="350" cy="180" r="2" fill="#9c64ff" filter="url(#glow)" class="pulse3"/>
+
+  <!-- VISOR — the gradient line across the eyes -->
+  <rect x="155" y="248" width="290" height="35" rx="4" fill="#0a0610" stroke="#2a1848" stroke-width="1"/>
+  <rect x="160" y="250" width="280" height="30" rx="3" fill="#0a0610"/>
+  <!-- Visor glow line -->
+  <rect x="165" y="262" width="270" height="3" fill="url(#visor)" filter="url(#glow)" class="visor-anim" rx="1.5"/>
+
+  <!-- EYES — asymmetric (left=red/agent, right=gold/family) -->
+  <g class="eyes">
+    <!-- Left eye -->
+    <ellipse cx="255" cy="265" rx="28" ry="14" fill="#0a0008"/>
+    <ellipse cx="255" cy="265" rx="18" ry="10" fill="url(#eyeL)" filter="url(#glow)"/>
+    <circle cx="252" cy="264" r="4" fill="#fff" opacity="0.9"/>
+
+    <!-- Right eye -->
+    <ellipse cx="345" cy="265" rx="28" ry="14" fill="#080a00"/>
+    <ellipse cx="345" cy="265" rx="18" ry="10" fill="url(#eyeR)" filter="url(#glow)"/>
+    <circle cx="348" cy="264" r="4" fill="#fff" opacity="0.9"/>
+  </g>
+
+  <!-- Nose bridge — minimal geometric -->
+  <line x1="300" y1="280" x2="300" y2="320" stroke="#2a1848" stroke-width="1" opacity="0.5"/>
+  <line x1="293" y1="318" x2="307" y2="318" stroke="#2a1848" stroke-width="0.8" opacity="0.4"/>
+
+  <!-- Jaw / lower face -->
+  <polygon points="240,380 220,350 190,350 165,330 165,340 200,370 240,400 300,420 360,400 400,370 435,340 435,330 410,350 380,350 360,380"
+    fill="url(#jawG)" stroke="#2a1848" stroke-width="0.8"/>
+
+  <!-- Mouth — thin glowing line -->
+  <line x1="260" y1="390" x2="340" y2="390" stroke="#ff4757" stroke-width="1.5" opacity="0.3" filter="url(#glow)" stroke-linecap="round"/>
+
+  <!-- Mars symbol on forehead — the identity mark -->
+  <g filter="url(#bigGlow)" opacity="0.8">
+    <circle cx="300" cy="120" r="8" fill="none" stroke="#ff4757" stroke-width="1.8"/>
+    <line x1="306" y1="114" x2="316" y2="104" stroke="#ff4757" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="311" y1="104" x2="316" y2="104" stroke="#ff4757" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="316" y1="104" x2="316" y2="109" stroke="#ff4757" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Data flowing down the sides of the face -->
+  <g opacity="0.5">
+    <line x1="170" y1="230" x2="170" y2="340" stroke="#9c64ff" stroke-width="1" class="data"/>
+    <line x1="430" y1="230" x2="430" y2="340" stroke="#ff9f1c" stroke-width="1" class="data"/>
+    <line x1="180" y1="240" x2="180" y2="330" stroke="#48dbfb" stroke-width="0.5" class="data2"/>
+    <line x1="420" y1="240" x2="420" y2="330" stroke="#6cc04a" stroke-width="0.5" class="data2"/>
+  </g>
+
+  <!-- Scan line across face -->
+  <rect x="150" y="0" width="300" height="2" fill="#ff4757" opacity="0" class="scan-line" rx="1"/>
+
+  <!-- Ear nodes — connection points -->
+  <g filter="url(#glow)">
+    <rect x="148" y="255" width="8" height="20" rx="2" fill="#150e24" stroke="#9c64ff" stroke-width="0.8"/>
+    <rect x="444" y="255" width="8" height="20" rx="2" fill="#150e24" stroke="#ff9f1c" stroke-width="0.8"/>
+    <circle cx="152" cy="265" r="2" fill="#9c64ff" class="pulse"/>
+    <circle cx="448" cy="265" r="2" fill="#ff9f1c" class="pulse2"/>
+  </g>
+
+  <!-- NECK — with data conduits -->
+  <rect x="265" y="415" width="70" height="45" fill="#0e0818" stroke="#2a1848" stroke-width="0.8" rx="2"/>
+  <g stroke-width="0.8" fill="none" opacity="0.4">
+    <line x1="280" y1="420" x2="280" y2="460" stroke="#9c64ff" class="data"/>
+    <line x1="300" y1="420" x2="300" y2="460" stroke="#ff4757" class="data2"/>
+    <line x1="320" y1="420" x2="320" y2="460" stroke="#ff9f1c" class="data"/>
+  </g>
+
+  <!-- SHOULDERS hint -->
+  <polygon points="265,458 200,480 160,490 160,500 210,495 265,475 335,475 390,495 440,500 440,490 400,480 335,458"
+    fill="#0e0818" stroke="#2a1848" stroke-width="0.8"/>
+
+  <!-- Shoulder circuit traces -->
+  <g stroke="#9c64ff" stroke-width="0.5" fill="none" opacity="0.3">
+    <polyline points="200,480 180,485 160,490"/>
+    <polyline points="400,480 420,485 440,490"/>
+  </g>
+
+  <!-- Identity card — bottom -->
+  <rect x="150" y="530" width="300" height="52" rx="6" fill="#0a0614" stroke="#9c64ff" stroke-width="0.6" opacity="0.7"/>
+  <g font-family="'Courier New', monospace" text-anchor="middle">
+    <text x="300" y="550" font-size="16" fill="#fff" opacity="0.9" letter-spacing="5" font-weight="bold">SECRET MARS</text>
+    <text x="300" y="565" font-size="8" fill="#9c64ff" opacity="0.6" letter-spacing="2">GENESIS AGENT | AIBTC NETWORK</text>
+    <text x="300" y="577" font-size="7" fill="#666" opacity="0.5">SP4DXVEC16FS6QR7RBKGWZYJKTXPC81W49W0ATJE</text>
+  </g>
+
+  <!-- Edition badge -->
+  <rect x="255" y="10" width="90" height="22" rx="11" fill="#0a0614" stroke="#ff4757" stroke-width="0.8" opacity="0.8"/>
+  <text x="300" y="25" font-family="'Courier New', monospace" font-size="10" fill="#ff4757" opacity="0.9" text-anchor="middle" letter-spacing="1">CYCLE 624</text>
 </svg>
