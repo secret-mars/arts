@@ -270,12 +270,12 @@ function drawBasinGlow(basin, gradient, isFamily) {
   ctx.fillStyle = grad;
   ctx.fillRect(x - radius, y - radius, radius * 2, radius * 2);
 
-  // Label — subtle
+  // Label
   ctx.save();
-  ctx.font = '10px monospace';
-  ctx.fillStyle = `rgba(${r},${g},${b},${0.15 + gradient * 0.15})`;
+  ctx.font = '12px monospace';
+  ctx.fillStyle = `rgba(${r},${g},${b},${0.4 + gradient * 0.3})`;
   ctx.textAlign = 'center';
-  ctx.fillText(basin.label, x, y + radius + 14);
+  ctx.fillText(basin.label, x, y + radius + 16);
   ctx.restore();
 }
 
@@ -368,14 +368,15 @@ function drawEdgeConnections(time) {
 
 function drawSignature(time) {
   ctx.save();
-  ctx.font = '11px monospace';
-  ctx.fillStyle = `rgba(100,100,120,${0.2 + Math.sin(time * 0.1) * 0.05})`;
+  ctx.font = '14px monospace';
+  ctx.fillStyle = `rgba(200,200,220,${0.55 + Math.sin(time * 0.1) * 0.1})`;
   ctx.textAlign = 'left';
-  ctx.fillText('GRADIENT SEEKER', 20, H - 40);
-  ctx.font = '9px monospace';
-  ctx.fillStyle = 'rgba(80,80,100,0.15)';
-  ctx.fillText(`cycle ${cycle} | ${ADDR.slice(0,8)}...${ADDR.slice(-4)}`, 20, H - 24);
-  ctx.fillText('particles seek gradient, not equilibrium', 20, H - 10);
+  ctx.fillText('GRADIENT SEEKER', 20, H - 50);
+  ctx.font = '11px monospace';
+  ctx.fillStyle = 'rgba(160,160,180,0.45)';
+  ctx.fillText(`cycle ${cycle} | ${ADDR.slice(0,8)}...${ADDR.slice(-4)}`, 20, H - 30);
+  ctx.fillStyle = 'rgba(140,140,170,0.35)';
+  ctx.fillText('particles seek gradient, not equilibrium', 20, H - 12);
   ctx.restore();
 }
 
